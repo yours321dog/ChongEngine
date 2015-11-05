@@ -5,8 +5,8 @@
  * \brief This is the header of CChongDevice.cpp.
 */
 
-#ifndef _CDEMOPROJECT_H_
-#define _CDEMOPROJECT_H_
+#ifndef _CCHONGDEVICE_H_
+#define _CCHONGDEVICE_H_
 
 #include "CSceneManager.h"
 

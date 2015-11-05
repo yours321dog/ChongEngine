@@ -6,8 +6,8 @@
  *		  describe the detail of model.
 */
 
-#ifndef _IDEMOOBJECT_H_
-#define _IDEMOOBJECT_H_
+#ifndef _IBASEOBJECT_H_
+#define _IBASEOBJECT_H_
 
 class IBaseObject
 {

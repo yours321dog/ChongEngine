@@ -5,8 +5,8 @@
  * \brief This is the header of file DemoScene.cpp
 */
 
-#ifndef _CDEMOSCENE_H_
-#define _CDEMOSCENE_H_
+#ifndef _CSCENEMANAGER_H_
+#define _CSCENEMANAGER_H_
 
 #include <vector>
 #include "IBaseObject.h"
