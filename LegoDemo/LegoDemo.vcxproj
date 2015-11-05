@@ -68,14 +68,17 @@
     <ClInclude Include="CChongRenderLagApi.h" />
     <ClInclude Include="CDeviceStatus.h" />
     <ClInclude Include="CSceneManager.h" />
-    <ClInclude Include="DemoUtils.h" />
+    <ClInclude Include="ChongUtils.h" />
     <ClInclude Include="IBaseObject.h" />
+    <ClInclude Include="Tank.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CChongDevice.cpp" />
+    <ClCompile Include="CDeviceStatus.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="DemoTest.cpp" />
     <ClCompile Include="IBaseObject.cpp" />
+    <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

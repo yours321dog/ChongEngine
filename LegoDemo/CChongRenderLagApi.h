@@ -6,6 +6,9 @@
  *		  the engine
  */
 
+#ifndef _CCHONGRENDERLAGAPI_h_
+#define _CCHONGRENDERLAGAPI_h_
+
 namespace cho
 {
 	namespace core
@@ -29,3 +32,5 @@ namespace cho
 			int nWindowPosY = 100, char *sWindowName = "ProjectTest");
 	}
 }
+
+#endif // _CCHONGRENDERLAGAPI_h_

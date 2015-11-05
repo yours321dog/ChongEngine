@@ -5,11 +5,12 @@
  * \brief Define some macro for the project
  */
 
-#ifndef _DEMOUTILS_h__
-#define _DEMOUTILS_h__
+#ifndef _CHONGUTILS_H_
+#define _CHONGUTILS_H_
 
 //Redefine the data types
 typedef unsigned char uc8;
+typedef char c8;
 typedef signed char i8;
 typedef short i16;
 typedef int i32;
@@ -19,4 +20,4 @@ typedef unsigned int ui32;
 typedef float f32;
 typedef double f64;
 
-#endif // _DEMOUTILS_h__
+#endif // _CHONGUTILS_H_

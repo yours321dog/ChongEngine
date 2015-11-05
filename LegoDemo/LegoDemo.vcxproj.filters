@@ -24,13 +24,16 @@
     <ClInclude Include="CSceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DemoUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="IBaseObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CChongRenderLagApi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChongUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IBaseObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CDeviceStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
