@@ -7,20 +7,20 @@
  */
 
 #include "CChongDevice.h"
+#include "CChongRenderLagApi.h"
 
-#include <stdlib.h>
-#include "GL/glut.h"
+using namespace cho::core;
 
-void reshape(int w, int h)
-{
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1.0, 30.0);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(5, 5, 15, 0, 0, 0, 0, 1, 0);
-}
+//void reshape(int w, int h)
+//{
+//	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1.0, 30.0);
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//	gluLookAt(5, 5, 15, 0, 0, 0, 0, 1, 0);
+//}
 
 CChongDevice *CChongDevice::sm_rCurrentProject = NULL;
 
@@ -41,11 +41,8 @@ CChongDevice::~CChongDevice()
 
 int CChongDevice::Build(int argc, char** argv)
 {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(m_nWindowWidth, m_nWindowHeight);
-	glutInitWindowPosition(m_nWindowPosX, m_nWindowPosY);
-	glutCreateWindow(m_sWindowName);
+	InitialDevice(argc, argv);
+	CreateViewWindow();
 
 	//GLenum res = glewInit();
 	//if (res != GLEW_OK) {
@@ -62,26 +59,27 @@ int CChongDevice::Build(int argc, char** argv)
 	if (m_pDemoScene != NULL)
 	{
 		SetCurrentProject();
-		glutDisplayFunc(DrawHelper);
+		SetDisplayFunc(DrawHelper);
 	}
 
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	EnableSimpleDepth();
+	EnableSimpleLight();
 
-	glutReshapeFunc(reshape);
+	EnableWindowReshapeFunc();
+
+	SetCamera(5, 5, 15, 0, 0, 0, 0, 1, 0);
 
 	return 0;
 }
 
 void CChongDevice::DoLoop()
 {
-	glutMainLoop();
+	DoMainLoop();
 }
 
 void CChongDevice::Redraw()
 {
-	glutPostRedisplay();
+	RedisplayWindow();
 }
 
 CSceneManager * CChongDevice::GetDemoScene()
@@ -97,7 +95,7 @@ void CChongDevice::SetWindowSize(int nWindowWidth, int nWindowHeight)
 
 void CChongDevice::SetKeyBoardEvent(void(*func)(unsigned char key, int x, int y))
 {
-	glutKeyboardFunc(func);
+	SetKeyBoardFunc(func);
 }
 
 void CChongDevice::SetWindowPosition(int nWindowPosX, int nWindowPosY)

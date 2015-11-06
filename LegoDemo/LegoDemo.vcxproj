@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CChongDevice.cpp" />
+    <ClCompile Include="CChongRenderLagApi.cpp" />
     <ClCompile Include="CDeviceStatus.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="DemoTest.cpp" />

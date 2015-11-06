@@ -71,9 +71,9 @@ static const GLint g_fgAxisIndex[] = {
 	2, 7, 3,
 };
 
-static const float g_fAmbient[4] = { 0.0, 0.0, 0.0, 1.0 };
-static const float g_fDiffuse[4] = { 0.8, 0.8, 0.0, 1.0 };
-static const float g_fSpecular[4] = { 0.0, 0.0, 0.0, 1.0 };
+static const float g_fAmbient[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
+static const float g_fDiffuse[4] = { 0.8f, 0.8f, 0.0f, 1.0f};
+static const float g_fSpecular[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 
 Tank::Tank()
 	:m_fTankTranslateFactor(0.0f),
