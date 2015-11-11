@@ -9,6 +9,8 @@
 #ifndef _IBASEOBJECT_H_
 #define _IBASEOBJECT_H_
 
+#include "ChongMath.h"
+
 class IBaseObject
 {
 public:
@@ -112,6 +114,8 @@ private:
 	float m_fScaleFactors[3];
 	float m_fOldPosition[3];
 	float m_fRotatePoint[3];
+
+	Matrix4f m_matTransformFactor;
 };
 
 #endif

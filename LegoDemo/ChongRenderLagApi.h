@@ -6,8 +6,8 @@
  *		  the engine
  */
 
-#ifndef _CCHONGRENDERLAGAPI_H_
-#define _CCHONGRENDERLAGAPI_H_
+#ifndef _CHONGRENDERLAGAPI_H_
+#define _CHONGRENDERLAGAPI_H_
 
 #include "ChongUtils.h"
 
@@ -40,6 +40,16 @@ void InitialDevice(i32 argc, char **argv);
 //****************************************************************
 void CreateViewWindow(i32 nWindowWidth = 1024, i32 nWindowLength = 768, i32 nWindowPosX = 100,
 	i32 nWindowPosY = 100, char *sWindowName = "ProjectTest");
+
+//****************************************************************
+// Method:    InitalRenderEnvironment
+// FullName:  InitalRenderEnvironment
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Description: Initial the render environment
+//****************************************************************
+void InitalRenderEnvironment();
 
 //****************************************************************
 // Method:    InitialView
@@ -163,4 +173,4 @@ void RedisplayWindow();
 //****************************************************************
 void DoMainLoop();
 
-#endif // _CCHONGRENDERLAGAPI_H_
+#endif // _CHONGRENDERLAGAPI_H_

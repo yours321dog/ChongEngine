@@ -7,7 +7,7 @@
  */
 
 #include "CChongDevice.h"
-#include "CChongRenderLagApi.h"
+#include "ChongRenderLagApi.h"
 
 //void reshape(int w, int h)
 //{
@@ -41,6 +41,8 @@ int CChongDevice::Build(int argc, char** argv)
 {
 	InitialDevice(argc, argv);
 	CreateViewWindow();
+
+	InitalRenderEnvironment();
 
 	//GLenum res = glewInit();
 	//if (res != GLEW_OK) {

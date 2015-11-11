@@ -38,7 +38,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <LibraryPath>$(SolutionDir)\Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -47,6 +50,9 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,21 +70,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CCamera.h" />
     <ClInclude Include="CChongDevice.h" />
-    <ClInclude Include="CChongRenderLagApi.h" />
+    <ClInclude Include="ChongRenderLagApi.h" />
     <ClInclude Include="CDeviceStatus.h" />
     <ClInclude Include="ChongHeader.h" />
     <ClInclude Include="ChongMath.h" />
+    <ClInclude Include="ChongShaderApi.h" />
+    <ClInclude Include="CPipeline.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="ChongUtils.h" />
     <ClInclude Include="IBaseObject.h" />
     <ClInclude Include="Tank.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CChongDevice.cpp" />
-    <ClCompile Include="CChongRenderLagApi.cpp" />
+    <ClCompile Include="ChongRenderLagApi.cpp" />
     <ClCompile Include="CDeviceStatus.cpp" />
     <ClCompile Include="ChongMath.cpp" />
+    <ClCompile Include="ChongShaderApi.cpp" />
     <ClCompile Include="ChongUtils.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="DemoTest.cpp" />

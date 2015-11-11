@@ -29,4 +29,21 @@ typedef double f64;
 #define ZERO_MEM(a) memset(a, 0, sizeof(a))
 #define RANDOM rand
 
+using namespace std;
+
+//Define common function
+
+//****************************************************************
+// Method:    ChongReadFile
+// FullName:  ChongReadFile
+// Access:    public 
+// Returns:   bool
+// Qualifier:
+// Parameter: const char * pFileName
+// Parameter: string & outFile
+// Description: This function is used to read the file and store 
+//				the file into string
+//****************************************************************
+bool ChongReadFile(const char* pFileName, string& strOut);
+
 #endif // _CHONGUTILS_H_

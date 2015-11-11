@@ -5,7 +5,8 @@
  * \brief The is the implement of render interface
  */
 
-#include "CChongRenderLagApi.h"
+#include "ChongRenderLagApi.h"
+#include "ChongShaderApi.h"
 #include "CDeviceStatus.h"
 #include "GL/glew.h"
 #include "GL/glut.h"
@@ -22,6 +23,20 @@ void CreateViewWindow(i32 nWindowWidth /*= 1024*/, i32 nWindowLength /*= 768*/, 
 	glutInitWindowSize(nWindowWidth, nWindowLength);
 	glutInitWindowPosition(nWindowPosX, nWindowPosY);
 	glutCreateWindow(sWindowName);
+}
+
+void InitalRenderEnvironment()
+{
+	// Must be done after glut is initialized!
+	GLenum res = glewInit();
+	if (res != GLEW_OK) {
+		fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
+		exit(0);
+	}
+
+	printf("GL version: %s\n", glGetString(GL_VERSION));
+
+	CompileShaders("shader/shader.vs", "shader/shader.fs");
 }
 
 void InitialView(f32 fEyeAngle, f32 fZNear, f32 fZFar)
