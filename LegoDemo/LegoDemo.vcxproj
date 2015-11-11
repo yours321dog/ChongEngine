@@ -67,6 +67,8 @@
     <ClInclude Include="CChongDevice.h" />
     <ClInclude Include="CChongRenderLagApi.h" />
     <ClInclude Include="CDeviceStatus.h" />
+    <ClInclude Include="ChongHeader.h" />
+    <ClInclude Include="ChongMath.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="ChongUtils.h" />
     <ClInclude Include="IBaseObject.h" />
@@ -76,6 +78,8 @@
     <ClCompile Include="CChongDevice.cpp" />
     <ClCompile Include="CChongRenderLagApi.cpp" />
     <ClCompile Include="CDeviceStatus.cpp" />
+    <ClCompile Include="ChongMath.cpp" />
+    <ClCompile Include="ChongUtils.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="DemoTest.cpp" />
     <ClCompile Include="IBaseObject.cpp" />

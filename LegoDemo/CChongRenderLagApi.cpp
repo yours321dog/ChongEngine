@@ -10,12 +10,12 @@
 #include "GL/glew.h"
 #include "GL/glut.h"
 
-void cho::core::InitialDevice(i32 argc, char **argv)
+void InitialDevice(i32 argc, char **argv)
 {
 	glutInit(&argc, argv);
 }
 
-void cho::core::CreateViewWindow(i32 nWindowWidth /*= 1024*/, i32 nWindowLength /*= 768*/, i32 nWindowPosX /*= 100*/,
+void CreateViewWindow(i32 nWindowWidth /*= 1024*/, i32 nWindowLength /*= 768*/, i32 nWindowPosX /*= 100*/,
 	i32 nWindowPosY /*= 100*/, char *sWindowName /*= "ProjectTest"*/)
 {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
@@ -24,14 +24,14 @@ void cho::core::CreateViewWindow(i32 nWindowWidth /*= 1024*/, i32 nWindowLength 
 	glutCreateWindow(sWindowName);
 }
 
-void cho::core::InitialView(f32 fEyeAngle, f32 fZNear, f32 fZFar)
+void InitialView(f32 fEyeAngle, f32 fZNear, f32 fZFar)
 {
 	CDeviceStatus::GetInstance()->SetEyeAngle(fEyeAngle);
 	CDeviceStatus::GetInstance()->SetClipPlaneZNear(fZNear);
 	CDeviceStatus::GetInstance()->SetClipPlaneZFar(fZFar);
 }
 
-void cho::core::WindowReshape(i32 nWindowWidth, i32 nWindowHeight)
+void WindowReshape(i32 nWindowWidth, i32 nWindowHeight)
 {
 	glPushAttrib(GL_ALL_ATTRIB_BITS);
 	glViewport(0, 0, (GLsizei)nWindowWidth, (GLsizei)nWindowHeight);
@@ -47,12 +47,12 @@ void cho::core::WindowReshape(i32 nWindowWidth, i32 nWindowHeight)
 	glPopAttrib();
 }
 
-void cho::core::EnableWindowReshapeFunc()
+void EnableWindowReshapeFunc()
 {
 	glutReshapeFunc(WindowReshape);
 }
 
-void cho::core::SetCamera(f32 fPositionX, f32 fPositionY, f32 fPositionZ, f32 fViewpointX, f32 fViewpointY, 
+void SetCamera(f32 fPositionX, f32 fPositionY, f32 fPositionZ, f32 fViewpointX, f32 fViewpointY, 
 	f32 fViewpointZ, f32 fTopX /*= 0.0f*/, f32 fTopY /*= 1.0f*/, f32 fTopZ /*= 0.0f*/)
 {
 	glMatrixMode(GL_MODELVIEW);
@@ -60,33 +60,33 @@ void cho::core::SetCamera(f32 fPositionX, f32 fPositionY, f32 fPositionZ, f32 fV
 	gluLookAt(fPositionX, fPositionY, fPositionZ, fViewpointX, fViewpointY, fViewpointZ, fTopX, fTopY, fTopZ);
 }
 
-void cho::core::SetDisplayFunc(void(*func)())
+void SetDisplayFunc(void(*func)())
 {
 	glutDisplayFunc(func);
 }
 
-void cho::core::SetKeyBoardFunc(void(*func)(unsigned char key, i32 x, i32 y))
+void SetKeyBoardFunc(void(*func)(unsigned char key, i32 x, i32 y))
 {
 	glutKeyboardFunc(func);
 }
 
-void cho::core::EnableSimpleLight()
+void EnableSimpleLight()
 {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHTING);
 }
 
-void cho::core::EnableSimpleDepth()
+void EnableSimpleDepth()
 {
 	glEnable(GL_DEPTH_TEST);
 }
 
-void cho::core::RedisplayWindow()
+void RedisplayWindow()
 {
 	glutPostRedisplay();
 }
 
-void cho::core::DoMainLoop()
+void DoMainLoop()
 {
 	glutMainLoop();
 }

@@ -8,6 +8,12 @@
 #ifndef _CHONGUTILS_H_
 #define _CHONGUTILS_H_
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string>
+#include <string.h>
+#include <assert.h>
+
 //Redefine the data types
 typedef unsigned char uc8;
 typedef char c8;
@@ -19,5 +25,8 @@ typedef unsigned short ui16;
 typedef unsigned int ui32;
 typedef float f32;
 typedef double f64;
+
+#define ZERO_MEM(a) memset(a, 0, sizeof(a))
+#define RANDOM rand
 
 #endif // _CHONGUTILS_H_

@@ -9,8 +9,6 @@
 #include "CChongDevice.h"
 #include "CChongRenderLagApi.h"
 
-using namespace cho::core;
-
 //void reshape(int w, int h)
 //{
 //	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
