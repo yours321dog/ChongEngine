@@ -23,7 +23,7 @@ void IBaseShader::Init()
 	CompileShaders();
 
 	//Enable the shader program
-	UseShaderProgram()
+	UseShaderProgram();
 }
 
 void IBaseShader::AttachShader(i32 &nShader, const char* pFileName, i32 ShaderType)
