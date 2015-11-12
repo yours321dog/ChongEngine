@@ -112,9 +112,32 @@ public:
 	// Description: Enable the shader program
 	//****************************************************************
 	void UseShaderProgram();
+
+	//****************************************************************
+	// Method:    SetVSFilename
+	// FullName:  IBaseShader::SetVSFilename
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: const char * strVSFileName
+	// Description: Set the file name of vs
+	//****************************************************************
+	void SetVSFilename(const char *strVSFileName);
+
+	//****************************************************************
+	// Method:    SetFSFileName
+	// FullName:  IBaseShader::SetFSFileName
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: const char * strFSFileName
+	// Description: Set the file name of fs
+	//****************************************************************
+	void SetFSFileName(const char *strFSFileName);
+
 private:
-	const char m_strVSFileName[50];
-	const char m_strFSFileName[50];
+	char m_strVSFileName[50];
+	char m_strFSFileName[50];
 
 	i32 m_nShaderProgram;
 	i32 m_nVSShader;

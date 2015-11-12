@@ -24,7 +24,7 @@ public:
 	// Parameter: i32 nWindowHeight
 	// Description: 
 	//****************************************************************
-	CCamera(i32 nWindowWidth, i32 nWindowHeight);
+	CCamera();
 
 	//****************************************************************
 	// Method:    CCamera
@@ -39,22 +39,7 @@ public:
 	// Parameter: const Vector3f & vecUp
 	// Description: 
 	//****************************************************************
-	CCamera(i32 nWindowWidth, i32 nWindowHeight, const Vector3f& vecPos, const Vector3f& vecTarget,
-		const Vector3f& vecUp);
-
-	//bool OnKeyboard(OGLDEV_KEY Key);
-
-	//void OnMouse(i32 x, i32 y);
-
-	//****************************************************************
-	// Method:    OnRender
-	// FullName:  CCamera::OnRender
-	// Access:    public 
-	// Returns:   void
-	// Qualifier:
-	// Description: 
-	//****************************************************************
-	void OnRender();
+	CCamera(const Vector3f& vecPos, const Vector3f& vecTarget, const Vector3f& vecUp);
 
 	//****************************************************************
 	// Method:    GetPos
@@ -64,10 +49,7 @@ public:
 	// Qualifier: const
 	// Description: 
 	//****************************************************************
-	const Vector3f& GetPos() const
-	{
-		return m_vecPos;
-	}
+	const Vector3f& GetPos() const;
 
 	//****************************************************************
 	// Method:    GetTarget
@@ -77,10 +59,7 @@ public:
 	// Qualifier: const
 	// Description: 
 	//****************************************************************
-	const Vector3f& GetTarget() const
-	{
-		return m_vecTarget;
-	}
+	const Vector3f& GetTarget() const;
 
 	//****************************************************************
 	// Method:    GetUp
@@ -90,32 +69,45 @@ public:
 	// Qualifier: const
 	// Description: 
 	//****************************************************************
-	const Vector3f& GetUp() const
-	{
-		return m_vecUp;
-	}
+	const Vector3f& GetUp() const;
+
+	//****************************************************************
+	// Method:    SetPosition
+	// FullName:  CCamera::SetPosition
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: const Vector3f vecPosition
+	// Description: 
+	//****************************************************************
+	void SetPosition(const Vector3f vecPosition);
+
+	//****************************************************************
+	// Method:    SetTarget
+	// FullName:  CCamera::SetTarget
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: const Vector3f vecTarget
+	// Description: 
+	//****************************************************************
+	void SetTarget(const Vector3f vecTarget);
+
+	//****************************************************************
+	// Method:    SetUp
+	// FullName:  CCamera::SetUp
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: const Vector3f vecUp
+	// Description: 
+	//****************************************************************
+	void SetUp(const Vector3f vecUp);
 
 private:
-
-	void Init();
-	void Update();
-
 	Vector3f m_vecPos;
 	Vector3f m_vecTarget;
 	Vector3f m_vecUp;
-
-	i32 m_nWindowWidth;
-	i32 m_nWindowHeight;
-
-	f32 m_fAngleH;
-	f32 m_fAngleV;
-
-	bool m_bOnUpperEdge;
-	bool m_bOnLowerEdge;
-	bool m_bOnLeftEdge;
-	bool m_bOnRightEdge;
-
-	Vector2i m_vecMousePos;
 };
 
 #endif // _CCAMERA_H_

@@ -10,12 +10,28 @@
 
 using std::string;
 
+IBaseShader::IBaseShader()
+:m_nFSShader(0),
+m_nVSShader(0),
+m_nSuccess(0),
+m_nShaderProgram(0)
+{
+	ZERO_MEM(m_strVSFileName);
+	ZERO_MEM(m_strFSFileName);
+	ZERO_MEM(m_strErrorLog);
+}
+
+IBaseShader::~IBaseShader()
+{
+
+}
+
 void IBaseShader::Init()
 {
 	//Create the shading program
 	CreateShaderProgram();
 
-	//Attach the shaders to the program
+	//Attach the shader to the program
 	AttachShader(m_nVSShader, m_strVSFileName, GL_VERTEX_SHADER);
 	AttachShader(m_nFSShader, m_strFSFileName, GL_FRAGMENT_SHADER);
 
@@ -35,7 +51,7 @@ void IBaseShader::AttachShader(i32 &nShader, const char* pFileName, i32 ShaderTy
 	}
 
 	string strTmp;
-	if (!ChongReadFile(m_strVSFileName, strTmp)) {
+	if (!ChongReadFile(pFileName, strTmp)) {
 		exit(1);
 	};
 
@@ -113,4 +129,14 @@ void IBaseShader::CreateShaderProgram()
 void IBaseShader::UseShaderProgram()
 {
 	glUseProgram(m_nShaderProgram);
+}
+
+void IBaseShader::SetVSFilename(const char *strVSFileName)
+{
+	strcpy_s(m_strVSFileName, strVSFileName);
+}
+
+void IBaseShader::SetFSFileName(const char *strFSFileName)
+{
+	strcpy_s(m_strFSFileName, strFSFileName);
 }

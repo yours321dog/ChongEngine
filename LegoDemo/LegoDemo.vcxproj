@@ -76,7 +76,9 @@
     <ClInclude Include="CDeviceStatus.h" />
     <ClInclude Include="ChongHeader.h" />
     <ClInclude Include="ChongMath.h" />
-    <ClInclude Include="ChongShaderApi.h" />
+    <ClInclude Include="CLightShader.h" />
+    <ClInclude Include="CRenderStatus.h" />
+    <ClInclude Include="IBaseShader.h" />
     <ClInclude Include="CPipeline.h" />
     <ClInclude Include="CSceneManager.h" />
     <ClInclude Include="ChongUtils.h" />
@@ -89,12 +91,19 @@
     <ClCompile Include="ChongRenderLagApi.cpp" />
     <ClCompile Include="CDeviceStatus.cpp" />
     <ClCompile Include="ChongMath.cpp" />
-    <ClCompile Include="ChongShaderApi.cpp" />
+    <ClCompile Include="CLightShader.cpp" />
+    <ClCompile Include="CPipeline.cpp" />
+    <ClCompile Include="CRenderStatus.cpp" />
+    <ClCompile Include="IBaseShader.cpp" />
     <ClCompile Include="ChongUtils.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
     <ClCompile Include="DemoTest.cpp" />
     <ClCompile Include="IBaseObject.cpp" />
     <ClCompile Include="Tank.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader\shader.fs" />
+    <None Include="shader\shader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

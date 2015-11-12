@@ -6,8 +6,9 @@
  */
 
 #include "ChongRenderLagApi.h"
-#include "ChongShaderApi.h"
+#include "CLightShader.h"
 #include "CDeviceStatus.h"
+#include "CRenderStatus.h"
 #include "GL/glew.h"
 #include "GL/glut.h"
 
@@ -36,7 +37,8 @@ void InitalRenderEnvironment()
 
 	printf("GL version: %s\n", glGetString(GL_VERSION));
 
-	CompileShaders("shader/shader.vs", "shader/shader.fs");
+	//Init the shader
+	CRenderStatus::GetInstance()->GetRenderShader()->Init();
 }
 
 void InitialView(f32 fEyeAngle, f32 fZNear, f32 fZFar)
@@ -73,6 +75,8 @@ void SetCamera(f32 fPositionX, f32 fPositionY, f32 fPositionZ, f32 fViewpointX, 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(fPositionX, fPositionY, fPositionZ, fViewpointX, fViewpointY, fViewpointZ, fTopX, fTopY, fTopZ);
+
+
 }
 
 void SetDisplayFunc(void(*func)())
