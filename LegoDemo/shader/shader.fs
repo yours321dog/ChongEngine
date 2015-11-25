@@ -1,6 +1,6 @@
 #version 330
 
-const int MAX_LIGHTS = 4;
+const int MAX_LIGHTS = 16;
 
 in vec2 texCoord0;
 in vec3 normal0;
@@ -15,9 +15,7 @@ struct Attenuation
 
 struct Light                                                                            
 {                                                                                           
-    vec3 color;                                                                     
-    float ambientIntensity;                                                         
-    float diffuseIntensity;      
+    vec3 color;                                                                        
     vec3 position;                                                                                                                                              
     vec3 direction;                                                                         
     Attenuation atten;
@@ -27,9 +25,14 @@ struct Light
 uniform int gNumLights;                                                                                                                                                                                                                     
 uniform Light gLights[MAX_LIGHTS];                                             
 uniform sampler2D gSampler;                                                                 
-uniform vec3 gEyeWorldPos;                                                                  
-uniform float gMatSpecularIntensity;                                                        
-uniform float gSpecularPower; 
+uniform vec3 gEyeWorldPos;                                                                                                                      
+uniform float gSpecularPower;
+uniform bool gUseTexture;
+uniform vec3 gAmbientCoef;
+uniform vec3 gDiffuseCoef;
+uniform vec3 gSpecularCoef;
+
+vec3 diffuse;
 
 vec4 CalcPointLight(Light light, vec3 normal)                                              
 {                                                                                           
@@ -37,21 +40,21 @@ vec4 CalcPointLight(Light light, vec3 normal)
     float distance = length(lightDirection);                                                
     lightDirection = normalize(lightDirection);                                             
     
-    vec4 ambientColor = vec4(light.color * light.ambientIntensity, 1.0f);
+    vec4 ambientColor = vec4(light.color * gAmbientCoef, 1.0f);
     float diffuseFactor = dot(normal, -lightDirection);                                     
                                                                                             
     vec4 diffuseColor  = vec4(0, 0, 0, 0);                                                  
     vec4 specularColor = vec4(0, 0, 0, 0);                                                  
                                                                                             
     if (diffuseFactor > 0) {                                                                
-        diffuseColor = vec4(light.color * light.diffuseIntensity * diffuseFactor, 1.0f);
+        diffuseColor = vec4(light.color * diffuse * diffuseFactor, 1.0f);
                                                                                             
         vec3 vertexToEye = normalize(gEyeWorldPos - worldPos0);                             
         vec3 lightReflect = normalize(reflect(lightDirection, normal));                     
         float specularFactor = dot(vertexToEye, lightReflect);                                      
         if (specularFactor > 0) {                                                           
             specularFactor = pow(specularFactor, gSpecularPower);                               
-            specularColor = vec4(light.color * gMatSpecularIntensity * specularFactor, 1.0f);
+            specularColor = vec4(light.color * gSpecularCoef * specularFactor, 1.0f);
         }                                                                                   
     }
                            
@@ -84,12 +87,29 @@ vec4 CalcLight(Light light, vec3 normal)
 void main()                                                                                 
 {                                                                                           
     vec3 normal = normalize(normal0);                                                       
-    vec4 totalLight = vec4(0, 0, 0, 0);                                     
+    vec4 totalLight = vec4(0, 0, 0, 0);                                      
+               
+    if (gUseTexture)
+    {
+        diffuse = vec3(1, 1, 1);
+
+        for (int i = 0; i < gNumLights; i++)
+        {                                            
+            totalLight += CalcLight(gLights[i], normal);                                
+        }                                                                                       
                                                                                             
-    for (int i = 0; i < gNumLights; i++)
-    {                                            
-        totalLight += CalcLight(gLights[i], normal);                                
-    }                                                                                       
+        gl_FragColor = texture2D(gSampler, texCoord0.xy) * totalLight;        
+    }
+    else
+    {
+        diffuse = gDiffuseCoef;
+
+        for (int i = 0; i < gNumLights; i++)
+        {                                            
+            totalLight += CalcLight(gLights[i], normal);                                
+        }                                                                                       
                                                                                             
-    gl_FragColor = texture2D(gSampler, texCoord0.xy) * totalLight;                             
+        gl_FragColor = totalLight;      
+    }                                                                         
+                         
 }

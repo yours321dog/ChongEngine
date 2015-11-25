@@ -31,7 +31,7 @@ const static i32 MARGIN = 10;
 
 CCamera::CCamera()
 :m_vecPos(0.0f, 0.0f, 0.0f),
-m_vecTarget(0.0f, 0.0f, 0.0f),
+m_vecTarget(0.0f, 0.0f, 1.0f),
 m_vecUp(0.0f, 1.0f, 0.0f)
 {
 }
@@ -42,6 +42,8 @@ CCamera::CCamera(const Vector3f& vecPos, const Vector3f& vecTarget, const Vector
 m_vecTarget(vecTarget),
 m_vecUp(vecUp)
 {
+	m_vecTarget.Normalize();
+	m_vecUp.Normalize();
 }
 
 const Vector3f& CCamera::GetPos() const

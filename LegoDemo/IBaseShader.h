@@ -9,7 +9,8 @@
 #define _IBASESHADER_H_
 
 #include "ChongUtils.h"
-#include <map>
+
+#define INVALID_UNIFORM_LOCATION 0xffffffff
 
 class IBaseShader
 {
@@ -42,7 +43,7 @@ public:
 	// Qualifier:
 	// Description: Init the shaders
 	//****************************************************************
-	virtual void Init();
+	virtual bool Init();
 
 	//****************************************************************
 	// Method:    AddShader
@@ -56,7 +57,7 @@ public:
 	// Description: Load the shading file and add it to the shader
 	//				program
 	//****************************************************************
-	void AttachShader(i32 &nShader, const char *pFileName, i32 nShaderType);
+	bool AttachShader(i32 &nShader, const char *pFileName, i32 nShaderType);
 
 	//****************************************************************
 	// Method:    CompileShaders
@@ -69,7 +70,7 @@ public:
 	// Parameter: const char * pFSFileName
 	// Description: 
 	//****************************************************************
-	void CompileShaders();
+	bool CompileShaders();
 
 	//****************************************************************
 	// Method:    DeleteShader
@@ -80,7 +81,7 @@ public:
 	// Parameter: i32 nShader
 	// Description: 
 	//****************************************************************
-	void DeleteShader(i32 nShader);
+	bool DeleteShader(i32 nShader);
 
 	//****************************************************************
 	// Method:    DeleteShaderProgram
@@ -91,7 +92,7 @@ public:
 	// Parameter: i32 nShaderProgram
 	// Description: 
 	//****************************************************************
-	void DeleteShaderProgram();
+	bool DeleteShaderProgram();
 
 	//****************************************************************
 	// Method:    CreateShaderProgram
@@ -101,7 +102,7 @@ public:
 	// Qualifier:
 	// Description: Create shader program
 	//****************************************************************
-	void CreateShaderProgram();
+	bool CreateShaderProgram();
 
 	//****************************************************************
 	// Method:    UseShaderProgram
@@ -134,6 +135,18 @@ public:
 	// Description: Set the file name of fs
 	//****************************************************************
 	void SetFSFileName(const char *strFSFileName);
+
+protected:
+	//****************************************************************
+	// Method:    GetUniformLoacation
+	// FullName:  IBaseShader::GetUniformLoacation
+	// Access:    protected 
+	// Returns:   i32
+	// Qualifier:
+	// Parameter: const char * pUniformName
+	// Description: Return the value of the uniform
+	//****************************************************************
+	ui32 GetUniformLoacation(const char *pUniformName);
 
 private:
 	char m_strVSFileName[50];

@@ -29,7 +29,7 @@ CRenderStatus * CRenderStatus::GetInstance()
 	return ms_pInstance;
 }
 
-IBaseShader * CRenderStatus::GetRenderShader() const
+CLightShader * CRenderStatus::GetRenderShader() const
 {
 	return m_pRenderShader;
 }
@@ -37,6 +37,16 @@ IBaseShader * CRenderStatus::GetRenderShader() const
 CPipeline * CRenderStatus::GetPipeline() const
 {
 	return m_pPipeline;
+}
+
+Matrix4f CRenderStatus::GetObjectTransform() const
+{
+	return m_matObjectTransform;
+}
+
+void CRenderStatus::SetObjectTransform(const Matrix4f &matObjectTransform)
+{
+	m_matObjectTransform = matObjectTransform;
 }
 
 CRenderStatus * CRenderStatus::ms_pInstance = NULL;

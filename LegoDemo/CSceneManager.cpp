@@ -49,3 +49,22 @@ IBaseObject * CSceneManager::AddDemoObject(IBaseObject * demoObject)
 	return demoObject;
 }
 
+ICommonObject * CSceneManager::AddCommonObject(ICommonObject *pCommonObject)
+{
+	//If demoObject is already in the list, then just return it
+	for (unsigned int i = 0; i < m_vDemoObjects.size(); i++)
+	{
+		if (pCommonObject == m_listCommonObjects[i])
+		{
+			return pCommonObject;
+		}
+	}
+
+	//Otherwise, put it in the demo object list
+	m_listCommonObjects.push_back(pCommonObject);
+
+
+
+	return pCommonObject;
+}
+

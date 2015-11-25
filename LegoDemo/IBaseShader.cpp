@@ -26,33 +26,44 @@ IBaseShader::~IBaseShader()
 
 }
 
-void IBaseShader::Init()
+bool IBaseShader::Init()
 {
 	//Create the shading program
 	CreateShaderProgram();
 
 	//Attach the shader to the program
-	AttachShader(m_nVSShader, m_strVSFileName, GL_VERTEX_SHADER);
-	AttachShader(m_nFSShader, m_strFSFileName, GL_FRAGMENT_SHADER);
+	if (!AttachShader(m_nVSShader, m_strVSFileName, GL_VERTEX_SHADER))
+	{
+		return false;
+	}
+	if (!AttachShader(m_nFSShader, m_strFSFileName, GL_FRAGMENT_SHADER))
+	{
+		return false;
+	}
 
 	//Compile the shader program
-	CompileShaders();
+	if (!CompileShaders())
+	{
+		return false;
+	}
 
 	//Enable the shader program
 	UseShaderProgram();
+
+	return true;
 }
 
-void IBaseShader::AttachShader(i32 &nShader, const char* pFileName, i32 ShaderType)
+bool IBaseShader::AttachShader(i32 &nShader, const char* pFileName, i32 ShaderType)
 {
 	nShader = glCreateShader(ShaderType);
 	if (nShader == 0) {
 		fprintf(stderr, "Error creating shader type %d\n", ShaderType);
-		exit(1);
+		return false;
 	}
 
 	string strTmp;
 	if (!ChongReadFile(pFileName, strTmp)) {
-		exit(1);
+		return false;
 	};
 
 	const char *pShaderContent = strTmp.c_str();
@@ -68,20 +79,22 @@ void IBaseShader::AttachShader(i32 &nShader, const char* pFileName, i32 ShaderTy
 	if (!m_nSuccess) {
 		glGetShaderInfoLog(nShader, sizeof(m_strErrorLog), NULL, m_strErrorLog);
 		fprintf(stderr, "Error compiling shader type %d: '%s'\n", ShaderType, m_strErrorLog);
-		exit(1);
+		return false;
 	}
 
 	glAttachShader(m_nShaderProgram, nShader);
+
+	return true;
 }
 
-void IBaseShader::CompileShaders()
+bool IBaseShader::CompileShaders()
 {
 	glLinkProgram(m_nShaderProgram);
 	glGetProgramiv(m_nShaderProgram, GL_LINK_STATUS, &m_nSuccess);
 	if (m_nSuccess == 0) {
 		glGetProgramInfoLog(m_nShaderProgram, sizeof(m_strErrorLog), NULL, m_strErrorLog);
 		fprintf(stderr, "Error linking shader program: '%s'\n", m_strErrorLog);
-		exit(1);
+		return false;
 	}
 
 	glValidateProgram(m_nShaderProgram);
@@ -89,22 +102,24 @@ void IBaseShader::CompileShaders()
 	if (!m_nSuccess) {
 		glGetProgramInfoLog(m_nShaderProgram, sizeof(m_strErrorLog), NULL, m_strErrorLog);
 		fprintf(stderr, "Invalid shader program: '%s'\n", m_strErrorLog);
-		exit(1);
+		return false;
 	}
+	return true;
 }
 
-void IBaseShader::DeleteShader(i32 nShader)
+bool IBaseShader::DeleteShader(i32 nShader)
 {
 	glDeleteShader(nShader);
 	glGetProgramiv(nShader, GL_DELETE_STATUS, &m_nSuccess);
 	if (!m_nSuccess) {
 		glGetProgramInfoLog(nShader, sizeof(m_strErrorLog), NULL, m_strErrorLog);
 		fprintf(stderr, "Invalid shader program: '%s'\n", m_strErrorLog);
-		exit(1);
+		return false;
 	}
+	return true;
 }
 
-void IBaseShader::DeleteShaderProgram()
+bool IBaseShader::DeleteShaderProgram()
 {
 
 	glDeleteProgram(m_nShaderProgram);
@@ -112,18 +127,20 @@ void IBaseShader::DeleteShaderProgram()
 	if (!m_nSuccess) {
 		glGetProgramInfoLog(m_nShaderProgram, sizeof(m_strErrorLog), NULL, m_strErrorLog);
 		fprintf(stderr, "Invalid shader program: '%s'\n", m_strErrorLog);
-		exit(1);
+		return false;
 	}
+	return true;
 }
 
-void IBaseShader::CreateShaderProgram()
+bool IBaseShader::CreateShaderProgram()
 {
 	m_nShaderProgram = glCreateProgram();
 
 	if (m_nShaderProgram == 0) {
 		fprintf(stderr, "Error creating shader program\n");
-		exit(1);
+		return false;
 	}
+	return true;
 }
 
 void IBaseShader::UseShaderProgram()
@@ -139,4 +156,15 @@ void IBaseShader::SetVSFilename(const char *strVSFileName)
 void IBaseShader::SetFSFileName(const char *strFSFileName)
 {
 	strcpy_s(m_strFSFileName, strFSFileName);
+}
+
+ui32 IBaseShader::GetUniformLoacation(const char *pUniformName)
+{
+	ui32 location = glGetUniformLocation(m_nShaderProgram, pUniformName);
+
+	if (location == INVALID_UNIFORM_LOCATION) {
+		fprintf(stderr, "Warning! Unable to get the location of uniform '%s'\n", pUniformName);
+	}
+
+	return location;
 }

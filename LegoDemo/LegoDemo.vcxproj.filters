@@ -60,6 +60,15 @@
     <ClInclude Include="CRenderStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ICommonObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChongElements.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChongConstant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CChongDevice.cpp">
@@ -102,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CPipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommonObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -10,6 +10,10 @@
 #define _CHONGRENDERLAGAPI_H_
 
 #include "ChongUtils.h"
+#include "ChongMath.h"
+#include "ChongElements.h"
+#include "ChongConstant.h"
+#include "CLightShader.h"
 
 //Initial API
 
@@ -172,5 +176,63 @@ void RedisplayWindow();
 // Description: Looping for the external events
 //****************************************************************
 void DoMainLoop();
+
+//****************************************************************
+// Method:    SetCurrentObjectTran
+// FullName:  SetCurrentObjectTran
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Parameter: const Matrix4f &
+// Description: Set the matrix value of rendering object transform
+//****************************************************************
+void SetCurrentObjectTran(const Matrix4f &matObjectTransform);
+
+//****************************************************************
+// Method:    GetUniqueObjectID
+// FullName:  GetUniqueObjectID
+// Access:    public 
+// Returns:   i32
+// Qualifier:
+// Parameter: const i32 & nObjectType
+// Description: Get an unique ID from system
+//****************************************************************
+void GetUniqueObjectID(const i32 &nObjectType, ui32 *pObjectID);
+
+//****************************************************************
+// Method:    AddLights
+// FullName:  AddLights
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Parameter: i32 nLight
+// Parameter: const Light * pLight
+// Description: Add light to the render system
+//****************************************************************
+void RenderLights(i32 nLight, const Light *pLight);
+
+//****************************************************************
+// Method:    StoreOjectVertex
+// FullName:  StoreOjectVertex
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Parameter: ui32 nObjectID
+// Parameter: const Vertex * pVertex
+// Description: 
+//****************************************************************
+void StoreOjectVertex(ui32 *nObjectID, const i32 nVerticesCount, const Vertex *pVertices, 
+	const i32 nIndicesCount, const ui32 *pIndices);
+
+//****************************************************************
+// Method:    RenderVertexObject
+// FullName:  RenderVertexObject
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Parameter: ui32 nObjectID
+// Description: 
+//****************************************************************
+void RenderVertexObject(ui32 *pObjectID, const i32 nTrianglesCount, const ui32 nStartIndex);
 
 #endif // _CHONGRENDERLAGAPI_H_

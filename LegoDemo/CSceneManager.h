@@ -10,6 +10,7 @@
 
 #include <vector>
 #include "IBaseObject.h"
+#include "ICommonObject.h"
 
 using std::vector;
 
@@ -57,8 +58,20 @@ public:
 	//****************************************************************
 	virtual IBaseObject *AddDemoObject(IBaseObject *demoObject);
 
+	//****************************************************************
+	// Method:    AddCommonObject
+	// FullName:  CSceneManager::AddCommonObject
+	// Access:    virtual public 
+	// Returns:   ICommonObject *
+	// Qualifier:
+	// Parameter: ICommonObject * pCommonObject
+	// Description: Add the common objects to the scene
+	//****************************************************************
+	virtual ICommonObject *AddCommonObject(ICommonObject *pCommonObject);
+
 private:
 	vector<IBaseObject *> m_vDemoObjects;
+	vector<ICommonObject *> m_listCommonObjects;
 };
 
 #endif

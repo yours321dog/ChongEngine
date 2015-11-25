@@ -12,6 +12,8 @@
 #include "ChongUtils.h"
 #include "CLightShader.h"
 #include "CPipeline.h"
+#include <map>
+
 class CRenderStatus
 {
 public:
@@ -53,7 +55,7 @@ public:
 	// Qualifier: const
 	// Description: Return the light shader manager
 	//****************************************************************
-	IBaseShader *GetRenderShader() const;
+	CLightShader *GetRenderShader() const;
 
 	//****************************************************************
 	// Method:    GetPipeline
@@ -64,11 +66,34 @@ public:
 	// Description: Return the pipeline manager
 	//****************************************************************
 	CPipeline *GetPipeline() const;
+
+	//****************************************************************
+	// Method:    GetObjectTransform
+	// FullName:  CRenderStatus::GetObjectTransform
+	// Access:    public 
+	// Returns:   Matrix4f
+	// Qualifier: const
+	// Description: Get the matrix value of object transform
+	//****************************************************************
+	Matrix4f GetObjectTransform() const;
+
+	//****************************************************************
+	// Method:    SetObjectTransform
+	// FullName:  CRenderStatus::SetObjectTransform
+	// Access:    public 
+	// Returns:   Matrix4f
+	// Qualifier:
+	// Parameter: const Matrix4f &
+	// Description: Set the matrix value of object transform
+	//****************************************************************
+	void SetObjectTransform(const Matrix4f &);
+
 private:
 	static CRenderStatus *ms_pInstance;
 
-	IBaseShader *m_pRenderShader;
+	CLightShader *m_pRenderShader;
 	CPipeline *m_pPipeline;
+	Matrix4f m_matObjectTransform;
 };
 
 #endif // _CRENDERSTATUS_H_
