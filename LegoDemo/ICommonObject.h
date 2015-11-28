@@ -63,9 +63,11 @@ public:
 	virtual void Load() = 0;
 
 protected:
-	vector<Vertex> m_vertices;
 	vector<Mesh> m_meshes;
 	vector<Material> m_materials;
+	const Vertex *m_pVertices;
+	const ui32 *m_pIndices;
+	ui32 m_nNumTriangles;
 
 	bool m_bIsLoad;
 };

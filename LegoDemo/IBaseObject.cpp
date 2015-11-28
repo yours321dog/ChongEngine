@@ -171,7 +171,7 @@ void IBaseObject::InitialPosition()
 {
 	for (int i = 0; i < 3; i++)
 	{
-		m_fOldPosition[i] = 0.0f;
+		m_fCurrentPosition[i] = 0.0f;
 	}
 
 	m_vecWorldPosition = Vector3f(0.0f);

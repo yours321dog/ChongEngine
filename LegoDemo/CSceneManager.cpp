@@ -7,8 +7,7 @@
 */
 
 #include "CSceneManager.h"
-#include "GL/glew.h"
-#include "GL/glut.h"
+#include "ChongRenderLagApi.h"
 
 CSceneManager::CSceneManager()
 {
@@ -21,15 +20,16 @@ CSceneManager::~CSceneManager()
 
 void CSceneManager::Draw()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
-	glClear(GL_DEPTH_BUFFER_BIT);
+	BeforeDrawAllInScene();
 
-	for (unsigned int i = 0; i < m_vDemoObjects.size(); i++)
+	
+
+	for (unsigned int i = 0; i < m_listCommonObjects.size(); i++)
 	{
-		m_vDemoObjects[i]->Render();
+		m_listCommonObjects[i]->Render();
 	}
 
-	glutSwapBuffers();
+	DrawALLInScene();
 }
 
 IBaseObject * CSceneManager::AddDemoObject(IBaseObject * demoObject)
@@ -63,8 +63,16 @@ ICommonObject * CSceneManager::AddCommonObject(ICommonObject *pCommonObject)
 	//Otherwise, put it in the demo object list
 	m_listCommonObjects.push_back(pCommonObject);
 
-
+	if (pCommonObject->Register())
+	{
+		pCommonObject->Load();
+	}
 
 	return pCommonObject;
+}
+
+CLight * CSceneManager::AddLightObject(CLight *pLight)
+{
+	return m_lightManager.AddLight(pLight);
 }
 

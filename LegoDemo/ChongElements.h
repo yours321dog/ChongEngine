@@ -37,3 +37,18 @@ struct Mesh
 	const Material *pMaterial;
 };
 
+struct Attenuation
+{
+	f32 constant;
+	f32 linear;
+	f32 exp;
+};
+
+struct Light
+{
+	Vector3f color;
+	Vector3f position;
+	Vector3f direction;
+	Attenuation atten;
+	f32 cutoff;
+};

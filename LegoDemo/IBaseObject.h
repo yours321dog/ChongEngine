@@ -165,6 +165,8 @@ protected:
 	Vector3f m_vecScale;
 
 	bool m_bIsRegisted;
+	ui32 m_nObjectID[2];
+	float m_fCurrentPosition[3];
 
 	//****************************************************************
 	// Method:    BeforeDraw
@@ -221,10 +223,7 @@ private:
 	float m_fTranslateFactors[3];
 	float m_fRotateFactors[3];
 	float m_fScaleFactors[3];
-	float m_fOldPosition[3];
 	float m_fRotatePoint[3];
-
-	ui32 m_nObjectID[2];
 };
 
 #endif

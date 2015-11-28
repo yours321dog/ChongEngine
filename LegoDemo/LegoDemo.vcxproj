@@ -74,6 +74,9 @@
     <ClInclude Include="CChongDevice.h" />
     <ClInclude Include="ChongConstant.h" />
     <ClInclude Include="ChongElements.h" />
+    <ClInclude Include="CLight.h" />
+    <ClInclude Include="CLightManager.h" />
+    <ClInclude Include="CSimpleLight.h" />
     <ClInclude Include="ICommonObject.h" />
     <ClInclude Include="ChongRenderLagApi.h" />
     <ClInclude Include="CDeviceStatus.h" />
@@ -91,6 +94,9 @@
   <ItemGroup>
     <ClCompile Include="CCamera.cpp" />
     <ClCompile Include="CChongDevice.cpp" />
+    <ClCompile Include="CLight.cpp" />
+    <ClCompile Include="CLightManager.cpp" />
+    <ClCompile Include="CSimpleLight.cpp" />
     <ClCompile Include="ICommonObject.cpp" />
     <ClCompile Include="ChongRenderLagApi.cpp" />
     <ClCompile Include="CDeviceStatus.cpp" />

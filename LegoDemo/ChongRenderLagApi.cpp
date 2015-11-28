@@ -138,9 +138,9 @@ void GetUniqueObjectID(const i32 &nObjectType, ui32 *pObjectID)
 	}
 }
 
-void RenderLights(i32 nLight, const Light *pLight)
+void RenderLights(i32 nNumLight, const Light *pLight)
 {
-	CRenderStatus::GetInstance()->GetRenderShader()->SetLights(nLight, pLight);
+	CRenderStatus::GetInstance()->GetRenderShader()->SetLights(nNumLight, pLight);
 }
 
 void StoreOjectVertex(ui32 *pObjectID, const i32 nVerticesCount, const Vertex *pVertices,
@@ -169,4 +169,15 @@ void RenderVertexObject(ui32 *pObjectID, const i32 nTrianglesCount, const ui32 n
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+}
+
+void DrawALLInScene()
+{
+	glutSwapBuffers();
+}
+
+void BeforeDrawAllInScene()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT);
 }

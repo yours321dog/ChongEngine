@@ -178,6 +178,26 @@ void RedisplayWindow();
 void DoMainLoop();
 
 //****************************************************************
+// Method:    BeforeDrawAllInScene
+// FullName:  BeforeDrawAllInScene
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Description: Do something before render all the things
+//****************************************************************
+void BeforeDrawAllInScene();
+
+//****************************************************************
+// Method:    RenderAll
+// FullName:  RenderAll
+// Access:    public 
+// Returns:   void
+// Qualifier:
+// Description: Render all the things in the scene
+//****************************************************************
+void DrawALLInScene();
+
+//****************************************************************
 // Method:    SetCurrentObjectTran
 // FullName:  SetCurrentObjectTran
 // Access:    public 

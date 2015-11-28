@@ -6,10 +6,14 @@
  */
 
 #include "ICommonObject.h"
+#include "ChongRenderLagApi.h"
 
 ICommonObject::ICommonObject()
-:m_bIsLoad(false)
+:m_bIsLoad(false),
+m_pIndices(NULL),
+m_pVertices(NULL)
 {
+
 }
 
 bool ICommonObject::Register()
@@ -25,6 +29,6 @@ void ICommonObject::Draw()
 		return;
 	}
 
-
+	RenderVertexObject(m_nObjectID, m_nNumTriangles, 0);
 }
 

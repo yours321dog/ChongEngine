@@ -6,6 +6,7 @@
  */
 
 #include "CLightShader.h"
+#include "ChongElements.h"
 #include "GL/glew.h"
 
 bool CLightShader::Init()

@@ -11,6 +11,7 @@
 #include <vector>
 #include "IBaseObject.h"
 #include "ICommonObject.h"
+#include "CLightManager.h"
 
 using std::vector;
 
@@ -69,7 +70,19 @@ public:
 	//****************************************************************
 	virtual ICommonObject *AddCommonObject(ICommonObject *pCommonObject);
 
+	//****************************************************************
+	// Method:    AddLightObject
+	// FullName:  CSceneManager::AddLightObject
+	// Access:    virtual public 
+	// Returns:   CLight *
+	// Qualifier:
+	// Parameter: CLight * pLight
+	// Description: Add the light object to the scene
+	//****************************************************************
+	virtual CLight *AddLightObject(CLight *pLight);
+
 private:
+	CLightManager m_lightManager;
 	vector<IBaseObject *> m_vDemoObjects;
 	vector<ICommonObject *> m_listCommonObjects;
 };
